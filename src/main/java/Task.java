@@ -18,4 +18,8 @@ public class Task {
         str += "] " + description;
         return str;
     }
+
+    public void setDone(boolean isDone) {
+        this.isDone = isDone;
+    }
 }

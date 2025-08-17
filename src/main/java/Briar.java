@@ -36,9 +36,16 @@ public class Briar {
     }
 
     private void processCommand(String command) {
-        switch(command) {
+        String[] splitString =command.split(" ");
+        switch(splitString[0]) {
             case "list":
                 this.list();
+                break;
+            case "mark":
+                this.mark(Integer.parseInt(splitString[1]));
+                break;
+            case "unmark":
+                this.unmark(Integer.parseInt(splitString[1]));
                 break;
             default:
                 this.add(command);
@@ -55,6 +62,20 @@ public class Briar {
     private void add(String command) {
         tasks.add(new Task(command));
         System.out.println("added: " + command);
+    }
+
+    private void mark(int taskNumber) {
+        Task selectedTask = tasks.get(taskNumber - 1);
+        selectedTask.setDone(true);
+        System.out.println("Nice! I've marked this task as done:");
+        System.out.println(selectedTask.toString());
+    }
+
+    private void unmark(int taskNumber) {
+        Task selectedTask = tasks.get(taskNumber - 1);
+        selectedTask.setDone(false);
+        System.out.println("OK, I've marked this task as not done yet:");
+        System.out.println(selectedTask.toString());
     }
 
     private void exit() {
