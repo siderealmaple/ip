@@ -47,9 +47,15 @@ public class Briar {
                 this.list();
                 break;
             case "mark":
+                if (spaceIndex == -1) {
+                    throw new EmptyCommandException(command);
+                }
                 this.mark(Integer.parseInt(input.substring(spaceIndex + 1)));
                 break;
             case "unmark":
+                if (spaceIndex == -1) {
+                    throw new EmptyCommandException(command);
+                }
                 this.unmark(Integer.parseInt(input.substring(spaceIndex + 1)));
                 break;
             case "todo":
@@ -75,6 +81,8 @@ public class Briar {
             }
         } catch (BriarException exception) {
             System.out.println(exception.getMessage());
+        } catch (IndexOutOfBoundsException exception) {
+            System.out.println("Aww, that's not in your list! >.<");
         }
     }
 
