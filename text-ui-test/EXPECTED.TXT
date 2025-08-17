@@ -27,4 +27,11 @@ Here's your tasklist:
 2. [T][X]  read book
 3. [D][ ]  return book (by: Sunday)
 4. [E][X]  project meeting (from: Mon 2pm to: 4pm)
+Aww, the description of todo cannot be empty! >.<
+Aww, the description of deadline cannot be empty! >.<
+Aww, the description of event cannot be empty! >.<
+Aww, I don't know what that is! >.<
+Aww, the format is incorrect! >.<
+Aww, the format is incorrect! >.<
+Aww, I don't know what that is! >.<
 Bye. Hope to see you again soon!

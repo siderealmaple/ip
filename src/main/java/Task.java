@@ -7,15 +7,21 @@ public class Task {
         this.isDone = false;
     }
 
-    public static Task createTask(int taskType, String command) {
+    public static Task createTask(int taskType, String command) throws WrongFormatException {
         String[] splitCommand;
         switch (taskType) {
         case 0:
             return new Todo(command);
         case 1:
+            if (!command.contains("/by")) {
+                throw new WrongFormatException();
+            }
             splitCommand = command.split("/by");
             return new Deadline(splitCommand[0], splitCommand[1]);
         case 2:
+            if (!command.contains("/from") || !command.contains("/to")) {
+                throw new WrongFormatException();
+            }
             splitCommand = command.split("/from");
             String[] fromToString = splitCommand[1].split("/to");
             return new Event(splitCommand[0], fromToString[0], fromToString[1]);

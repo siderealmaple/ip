@@ -41,28 +41,40 @@ public class Briar {
         if (spaceIndex != -1) {
             command = input.substring(0, spaceIndex);
         }
-        switch(command) {
-        case "list":
-            this.list();
-            break;
-        case "mark":
-            this.mark(Integer.parseInt(input.substring(spaceIndex + 1)));
-            break;
-        case "unmark":
-            this.unmark(Integer.parseInt(input.substring(spaceIndex + 1)));
-            break;
-        case "todo":
-            this.add(0, input.substring(spaceIndex));
-            break;
-        case "deadline":
-            this.add(1, input.substring(spaceIndex));
-            break;
-        case "event":
-            this.add(2, input.substring(spaceIndex));
-            break;
-        default:
-
-            break;
+        try {
+            switch (command) {
+            case "list":
+                this.list();
+                break;
+            case "mark":
+                this.mark(Integer.parseInt(input.substring(spaceIndex + 1)));
+                break;
+            case "unmark":
+                this.unmark(Integer.parseInt(input.substring(spaceIndex + 1)));
+                break;
+            case "todo":
+                if (spaceIndex == -1) {
+                    throw new EmptyCommandException(command);
+                }
+                this.add(0, input.substring(spaceIndex));
+                break;
+            case "deadline":
+                if (spaceIndex == -1) {
+                    throw new EmptyCommandException(command);
+                }
+                this.add(1, input.substring(spaceIndex));
+                break;
+            case "event":
+                if (spaceIndex == -1) {
+                    throw new EmptyCommandException(command);
+                }
+                this.add(2, input.substring(spaceIndex));
+                break;
+            default:
+                throw new InvalidCommandException();
+            }
+        } catch (BriarException exception) {
+            System.out.println(exception.getMessage());
         }
     }
 
@@ -73,7 +85,7 @@ public class Briar {
         }
     }
 
-    private void add(int taskType, String command) {
+    private void add(int taskType, String command) throws BriarException{
         Task task;
         task = Task.createTask(taskType, command);
         tasks.add(task);
