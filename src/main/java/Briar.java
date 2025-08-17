@@ -67,6 +67,7 @@ public class Briar {
     }
 
     private void list() {
+        System.out.println("Here's your tasklist:");
         for (int i = 0; i < tasks.size(); ++i) {
             System.out.println((i + 1) + ". " + tasks.get(i).toString());
         }
@@ -92,7 +93,9 @@ public class Briar {
             tasks.add(task);
             break;
         }
-        System.out.println("added: " + task);
+        System.out.println("Okie! I've added this task:");
+        System.out.println(task);
+        System.out.println("You now have " + tasks.size() + " tasks in the list!");
     }
 
     private void mark(int taskNumber) {
