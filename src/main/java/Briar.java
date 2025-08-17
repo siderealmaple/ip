@@ -74,25 +74,9 @@ public class Briar {
     }
 
     private void add(int taskType, String command) {
-        Task task = null;
-        String[] splitCommand;
-        switch (taskType) {
-        case 0:
-            task = new Todo(command);
-            tasks.add(task);
-            break;
-        case 1:
-            splitCommand = command.split("/by");
-            task = new Deadline(splitCommand[0], splitCommand[1]);
-            tasks.add(task);
-            break;
-        case 2:
-            splitCommand = command.split("/from");
-            String[] fromToString = splitCommand[1].split("/to");
-            task = new Event(splitCommand[0], fromToString[0], fromToString[1]);
-            tasks.add(task);
-            break;
-        }
+        Task task;
+        task = Task.createTask(taskType, command);
+        tasks.add(task);
         System.out.println("Okie! I've added this task:");
         System.out.println(task);
         System.out.println("You now have " + tasks.size() + " tasks in the list!");
