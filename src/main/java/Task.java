@@ -2,23 +2,29 @@ public abstract class Task {
     private String description;
     private boolean isDone;
 
+    public enum TaskType {
+        TODO,
+        DEADLINE,
+        EVENT
+    }
+
     public Task(String description) {
         this.description = description;
         this.isDone = false;
     }
 
-    public static Task createTask(int taskType, String command) throws WrongFormatException {
+    public static Task createTask(TaskType taskType, String command) throws WrongFormatException {
         String[] splitCommand;
         switch (taskType) {
-        case 0:
+        case TODO:
             return new Todo(command);
-        case 1:
+        case DEADLINE:
             if (!command.contains("/by")) {
                 throw new WrongFormatException();
             }
             splitCommand = command.split("/by");
             return new Deadline(splitCommand[0], splitCommand[1]);
-        case 2:
+        case EVENT:
             if (!command.contains("/from") || !command.contains("/to")) {
                 throw new WrongFormatException();
             }

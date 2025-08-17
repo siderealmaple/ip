@@ -62,19 +62,19 @@ public class Briar {
                 if (spaceIndex == -1) {
                     throw new EmptyCommandException(command);
                 }
-                this.add(0, input.substring(spaceIndex));
+                this.add(Task.TaskType.TODO, input.substring(spaceIndex));
                 break;
             case "deadline":
                 if (spaceIndex == -1) {
                     throw new EmptyCommandException(command);
                 }
-                this.add(1, input.substring(spaceIndex));
+                this.add(Task.TaskType.DEADLINE, input.substring(spaceIndex));
                 break;
             case "event":
                 if (spaceIndex == -1) {
                     throw new EmptyCommandException(command);
                 }
-                this.add(2, input.substring(spaceIndex));
+                this.add(Task.TaskType.EVENT, input.substring(spaceIndex));
                 break;
             case "delete":
                 if (spaceIndex == -1) {
@@ -99,7 +99,7 @@ public class Briar {
         }
     }
 
-    private void add(int taskType, String command) throws BriarException{
+    private void add(Task.TaskType taskType, String command) throws BriarException{
         Task task;
         task = Task.createTask(taskType, command);
         tasks.add(task);
