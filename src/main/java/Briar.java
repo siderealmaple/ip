@@ -35,20 +35,27 @@ public class Briar {
         }
     }
 
-    private void processCommand(String command) {
-        String[] splitString =command.split(" ");
-        switch(splitString[0]) {
+    private void processCommand(String input) {
+        int spaceIndex = input.indexOf(" ");
+        String command = input;
+        if (spaceIndex != -1) {
+            command = input.substring(0, spaceIndex);
+        }
+        switch(command) {
             case "list":
                 this.list();
                 break;
             case "mark":
-                this.mark(Integer.parseInt(splitString[1]));
+                this.mark(Integer.parseInt(input.substring(spaceIndex + 1)));
                 break;
             case "unmark":
-                this.unmark(Integer.parseInt(splitString[1]));
+                this.unmark(Integer.parseInt(input.substring(spaceIndex + 1)));
+                break;
+            case "todo":
+                this.add(0, input.substring(spaceIndex));
                 break;
             default:
-                this.add(command);
+
                 break;
         }
     }
@@ -59,9 +66,15 @@ public class Briar {
         }
     }
 
-    private void add(String command) {
-        tasks.add(new Task(command));
-        System.out.println("added: " + command);
+    private void add(int taskType, String command) {
+        Task task = null;
+        switch (taskType) {
+            case 0:
+                task = new Todo(command);
+                tasks.add(task);
+                break;
+        }
+        System.out.println("added: " + task);
     }
 
     private void mark(int taskNumber) {
