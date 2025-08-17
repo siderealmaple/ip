@@ -11,7 +11,7 @@ Nice! I've marked this task as done:
 Okie! I've added this task:
 [D][ ]  return book (by: Sunday)
 You now have 3 tasks in the list!
-Here's your tasklist:
+Here's your task list:
 1. [T][X]  borrow book
 2. [T][ ]  read book
 3. [D][ ]  return book (by: Sunday)
@@ -22,7 +22,7 @@ Okie! I've added this task:
 You now have 4 tasks in the list!
 Nice! I've marked this task as done:
 [E][X]  project meeting (from: Mon 2pm to: 4pm)
-Here's your tasklist:
+Here's your task list:
 1. [T][X]  borrow book
 2. [T][X]  read book
 3. [D][ ]  return book (by: Sunday)
@@ -34,4 +34,13 @@ Aww, I don't know what that is! >.<
 Aww, the format is incorrect! >.<
 Aww, the format is incorrect! >.<
 Aww, I don't know what that is! >.<
+OK, I've marked this task as not done yet:
+[T][ ]  read book
+Okie! I've removed the task:
+[E][X]  project meeting (from: Mon 2pm to: 4pm)
+You now have 3 tasks in the list!
+Here's your task list:
+1. [T][X]  borrow book
+2. [T][ ]  read book
+3. [D][ ]  return book (by: Sunday)
 Bye. Hope to see you again soon!
