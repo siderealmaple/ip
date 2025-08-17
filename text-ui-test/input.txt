@@ -14,4 +14,7 @@ blah
 deadline wrongdeadline
 event wrongevent
 
+unmark 2
+delete 4
+list
 bye
