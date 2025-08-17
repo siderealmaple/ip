@@ -76,6 +76,12 @@ public class Briar {
                 }
                 this.add(2, input.substring(spaceIndex));
                 break;
+            case "delete":
+                if (spaceIndex == -1) {
+                    throw new EmptyCommandException(command);
+                }
+                this.delete(Integer.parseInt(input.substring(spaceIndex + 1)));
+                break;
             default:
                 throw new InvalidCommandException();
             }
@@ -87,7 +93,7 @@ public class Briar {
     }
 
     private void list() {
-        System.out.println("Here's your tasklist:");
+        System.out.println("Here's your task list:");
         for (int i = 0; i < tasks.size(); ++i) {
             System.out.println((i + 1) + ". " + tasks.get(i).toString());
         }
@@ -99,6 +105,14 @@ public class Briar {
         tasks.add(task);
         System.out.println("Okie! I've added this task:");
         System.out.println(task);
+        System.out.println("You now have " + tasks.size() + " tasks in the list!");
+    }
+
+    private void delete(int taskNumber) {
+        Task selectedTask = tasks.get(taskNumber - 1);
+        tasks.remove(taskNumber - 1);
+        System.out.println("Okie! I've removed the task:");
+        System.out.println(selectedTask.toString());
         System.out.println("You now have " + tasks.size() + " tasks in the list!");
     }
 
