@@ -54,6 +54,9 @@ public class Briar {
         case "todo":
             this.add(0, input.substring(spaceIndex));
             break;
+        case "deadline":
+            this.add(1, input.substring(spaceIndex));
+            break;
         default:
 
             break;
@@ -71,6 +74,11 @@ public class Briar {
         switch (taskType) {
         case 0:
             task = new Todo(command);
+            tasks.add(task);
+            break;
+        case 1:
+            String[] splitCommand = command.split("/by");
+            task = new Deadline(splitCommand[0], splitCommand[1]);
             tasks.add(task);
             break;
         }
