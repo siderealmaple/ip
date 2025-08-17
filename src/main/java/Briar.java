@@ -4,11 +4,11 @@ import java.util.ArrayList;
 public class Briar {
     private Scanner scanner;
 
-    private ArrayList<String> texts;
+    private ArrayList<Task> tasks;
 
     private Briar() {
         scanner = new Scanner(System.in);
-        texts = new ArrayList<String>(100);
+        tasks = new ArrayList<Task>(100);
     }
 
     public static void main(String[] args) {
@@ -47,14 +47,14 @@ public class Briar {
     }
 
     private void list() {
-        for (int i = 0; i < texts.size(); ++i) {
-            System.out.println((i + 1) + ". " + texts.get(i));
+        for (int i = 0; i < tasks.size(); ++i) {
+            System.out.println((i + 1) + ". " + tasks.get(i).toString());
         }
     }
 
-    private void add(String text) {
-        texts.add(text);
-        System.out.println("added: " + text);
+    private void add(String command) {
+        tasks.add(new Task(command));
+        System.out.println("added: " + command);
     }
 
     private void exit() {
