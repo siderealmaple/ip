@@ -89,6 +89,8 @@ public class Briar {
             System.out.println(exception.getMessage());
         } catch (IndexOutOfBoundsException exception) {
             System.out.println("Aww, that's not in your list! >.<");
+        } catch (NumberFormatException exception) {
+            System.out.println("Aww, " + command + " only takes in a number! >.<");
         }
     }
 
