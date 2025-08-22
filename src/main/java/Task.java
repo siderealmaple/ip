@@ -23,14 +23,14 @@ public abstract class Task {
                 throw new WrongFormatException();
             }
             splitCommand = command.split("/by");
-            return new Deadline(splitCommand[0], splitCommand[1]);
+            return new Deadline(splitCommand[0].substring(0, splitCommand[0].length() - 1), splitCommand[1].substring(1));
         case EVENT:
             if (!command.contains("/from") || !command.contains("/to")) {
                 throw new WrongFormatException();
             }
             splitCommand = command.split("/from");
-            String[] fromToString = splitCommand[1].split("/to");
-            return new Event(splitCommand[0], fromToString[0], fromToString[1]);
+            String[] fromToString = splitCommand[1].substring(1).split("/to");
+            return new Event(splitCommand[0].substring(0, splitCommand[0].length() - 1), fromToString[0].substring(0, fromToString[0].length() - 1), fromToString[1].substring(1));
         }
         return null;
     }
@@ -44,6 +44,17 @@ public abstract class Task {
             str += " ";
         }
         str += "] " + description;
+        return str;
+    }
+
+    public String toText() {
+        String str = "";
+        if (isDone) {
+            str += "1";
+        } else {
+            str += "0";
+        }
+        str += "|" + description;
         return str;
     }
 

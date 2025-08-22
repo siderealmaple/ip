@@ -1,3 +1,6 @@
+import java.io.FileNotFoundException;
+import java.io.FilePermission;
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -6,16 +9,63 @@ public class Briar {
 
     private ArrayList<Task> tasks;
 
-    private Briar() {
+    private String filePath;
+
+    private Briar(String filePath) {
+        this.filePath = filePath;
         scanner = new Scanner(System.in);
-        tasks = new ArrayList<Task>(100);
+        try {
+            String taskString = FileHandler.readFromFile(filePath);
+            System.out.println(taskString);
+            tasks = taskParser(taskString);
+        } catch (FileNotFoundException exception) {
+            tasks = new ArrayList<Task>(100);
+        }
     }
 
     public static void main(String[] args) {
-        Briar briar = new Briar();
+        Briar briar = new Briar("./data/Briar.txt");
         briar.greet();
         briar.listen();
         briar.exit();
+    }
+
+    private static ArrayList<Task> taskParser(String taskString) {
+        String[] splitTaskStrings = taskString.split("\n");
+        ArrayList<Task> tasks = new ArrayList<Task>();
+        for (int i = 0; i < splitTaskStrings.length; ++i) {
+            String[] splitStrings = splitTaskStrings[i].split("\\|");
+            switch (splitStrings[0]) {
+            case "T":
+                Task toDoTask = new Todo(splitStrings[2]);
+                boolean isToDoDone = Integer.parseInt(splitStrings[1]) != 0;
+                toDoTask.setDone(isToDoDone);
+                tasks.add(toDoTask);
+                break;
+            case "D":
+                Task deadlineTask = new Deadline(splitStrings[2], splitStrings[3]);
+                boolean isDeadlineDone = Integer.parseInt(splitStrings[1]) != 0;
+                deadlineTask.setDone(isDeadlineDone);
+                tasks.add(deadlineTask);
+                break;
+            case "E":
+                Task eventTask = new Event(splitStrings[2], splitStrings[3], splitStrings[4]);
+                boolean isEventDone = Integer.parseInt(splitStrings[1]) != 0;
+                eventTask.setDone(isEventDone);
+                tasks.add(eventTask);
+                break;
+            default:
+            }
+        }
+        return tasks;
+    }
+
+    private static String taskToString(ArrayList<Task> tasks) {
+        String str = "";
+        for (Task task : tasks) {
+            str += task.toText() + System.lineSeparator();
+        }
+        return str;
     }
 
     private void greet() {
@@ -62,19 +112,19 @@ public class Briar {
                 if (spaceIndex == -1) {
                     throw new EmptyCommandException(command);
                 }
-                this.add(Task.TaskType.TODO, input.substring(spaceIndex));
+                this.add(Task.TaskType.TODO, input.substring(spaceIndex + 1));
                 break;
             case "deadline":
                 if (spaceIndex == -1) {
                     throw new EmptyCommandException(command);
                 }
-                this.add(Task.TaskType.DEADLINE, input.substring(spaceIndex));
+                this.add(Task.TaskType.DEADLINE, input.substring(spaceIndex + 1));
                 break;
             case "event":
                 if (spaceIndex == -1) {
                     throw new EmptyCommandException(command);
                 }
-                this.add(Task.TaskType.EVENT, input.substring(spaceIndex));
+                this.add(Task.TaskType.EVENT, input.substring(spaceIndex + 1));
                 break;
             case "delete":
                 if (spaceIndex == -1) {
@@ -84,6 +134,11 @@ public class Briar {
                 break;
             default:
                 throw new InvalidCommandException();
+            }
+            try {
+                FileHandler.writeToFile(filePath, taskToString(tasks));
+            } catch (IOException exception) {
+
             }
         } catch (BriarException exception) {
             System.out.println(exception.getMessage());
