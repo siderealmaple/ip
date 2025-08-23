@@ -1,3 +1,5 @@
+package briar.task;
+
 public class Event extends Task {
     String from;
     String to;

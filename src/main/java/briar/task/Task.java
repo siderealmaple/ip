@@ -1,3 +1,7 @@
+package briar.task;
+
+import briar.exception.WrongFormatException;
+
 public abstract class Task {
     private String description;
     private boolean isDone;

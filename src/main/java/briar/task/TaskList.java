@@ -1,4 +1,7 @@
+package briar.task;
+
 import java.util.ArrayList;
+import briar.exception.TaskNotInListException;
 
 public class TaskList {
     ArrayList<Task> tasks;

@@ -1,3 +1,10 @@
+package briar.command;
+
+import briar.task.TaskList;
+import briar.ui.Ui;
+import briar.ui.Storage;
+import briar.exception.BriarException;
+
 public class DeleteCommand extends Command {
     int taskNumber;
 

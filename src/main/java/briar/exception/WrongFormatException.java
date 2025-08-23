@@ -1,3 +1,5 @@
+package briar.exception;
+
 public class WrongFormatException extends BriarException {
 
     public WrongFormatException() {
