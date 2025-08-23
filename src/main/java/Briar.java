@@ -9,13 +9,13 @@ public class Briar {
 
     private ArrayList<Task> tasks;
 
-    private String filePath;
+    private Storage storage;
 
     private Briar(String filePath) {
-        this.filePath = filePath;
+        this.storage = new Storage(filePath);
         scanner = new Scanner(System.in);
         try {
-            String taskString = FileHandler.readFromFile(filePath);
+            String taskString = storage.load();
             System.out.println(taskString);
             tasks = taskParser(taskString);
         } catch (FileNotFoundException exception) {
@@ -136,7 +136,7 @@ public class Briar {
                 throw new InvalidCommandException();
             }
             try {
-                FileHandler.writeToFile(filePath, taskToString(tasks));
+                storage.write(taskToString(tasks));
             } catch (IOException exception) {
 
             }

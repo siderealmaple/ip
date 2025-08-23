@@ -4,8 +4,14 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class FileHandler {
-    public static String readFromFile(String filePath) throws FileNotFoundException {
+public class Storage {
+    private String filePath;
+
+    public Storage(String filePath) {
+        this.filePath = filePath;
+    }
+
+    public String load() throws FileNotFoundException {
         File file = new File(filePath);
         Scanner scanner = new Scanner(file); // create a Scanner using the File as the source
         String str = "";
@@ -15,7 +21,7 @@ public class FileHandler {
         return str;
     }
 
-    public static void writeToFile(String filePath, String textToAdd) throws IOException {
+    public void write(String textToAdd) throws IOException {
         FileWriter fw = new FileWriter(filePath);
         fw.write(textToAdd);
         fw.close();
