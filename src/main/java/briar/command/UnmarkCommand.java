@@ -19,4 +19,9 @@ public class UnmarkCommand extends Command {
         ui.showUnmarkedTask(taskString);
         storage.write(tasks.taskToTextString());
     }
+
+    @Override
+    public String toString() {
+        return "Unmark task " + taskNumber;
+    }
 }

@@ -15,4 +15,9 @@ public class ListCommand extends Command {
     public void execute(TaskList tasks, Ui ui, Storage storage) throws BriarException {
         ui.showTaskList(tasks);
     }
+
+    @Override
+    public String toString() {
+        return "List";
+    }
 }

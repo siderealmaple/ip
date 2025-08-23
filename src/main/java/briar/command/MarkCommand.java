@@ -19,4 +19,9 @@ public class MarkCommand extends Command {
         ui.showMarkedTask(taskString);
         storage.write(tasks.taskToTextString());
     }
+
+    @Override
+    public String toString() {
+        return "Mark task " + taskNumber;
+    }
 }

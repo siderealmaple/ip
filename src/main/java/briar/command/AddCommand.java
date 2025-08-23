@@ -21,4 +21,9 @@ public class AddCommand extends Command {
         ui.showTaskNumber(tasks);
         storage.write(tasks.taskToTextString());
     }
+
+    @Override
+    public String toString() {
+        return "Add: " + task;
+    }
 }
