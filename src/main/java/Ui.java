@@ -20,12 +20,28 @@ public class Ui {
         System.out.println(errorMessage);
     }
 
-    public void showMessage(String message) {
-        System.out.println(message);
-    }
-
     public void showTaskNumber(TaskList tasks) {
         System.out.println("You now have " + tasks.getSize() + " tasks in the list!");
+    }
+
+    public void showTaskList(TaskList tasks) {
+        System.out.println("Here's your task list:" + System.lineSeparator() + tasks.toString());
+    }
+
+    public void showAddedTask(Task task) {
+        System.out.println("Okie! I've added this task:" + System.lineSeparator() + task);
+    }
+
+    public void showDeletedTask(String taskString) {
+        System.out.println("Okie! I've removed this task:" + System.lineSeparator() + taskString);
+    }
+
+    public void showMarkedTask(String taskString) {
+        System.out.println("Nice! I've marked this task as done:" + System.lineSeparator() + taskString);
+    }
+
+    public void showUnmarkedTask(String taskString) {
+        System.out.println("OK, I've marked this task as not done yet:" + System.lineSeparator() + taskString);
     }
 
     public void showExit() {

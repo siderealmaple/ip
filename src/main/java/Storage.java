@@ -11,19 +11,27 @@ public class Storage {
         this.filePath = filePath;
     }
 
-    public String load() throws FileNotFoundException {
-        File file = new File(filePath);
-        Scanner scanner = new Scanner(file);
-        String str = "";
-        while (scanner.hasNext()) {
-            str += scanner.nextLine() + "\n";
+    public String load() throws BriarException {
+        try {
+            File file = new File(filePath);
+            Scanner scanner = new Scanner(file);
+            String str = "";
+            while (scanner.hasNext()) {
+                str += scanner.nextLine() + "\n";
+            }
+            return str;
+        } catch (FileNotFoundException exception) {
+            throw new BriarException();
         }
-        return str;
     }
 
-    public void write(String textToAdd) throws IOException {
-        FileWriter fw = new FileWriter(filePath);
-        fw.write(textToAdd);
-        fw.close();
+    public void write(String textToAdd) throws BriarException {
+        try {
+            FileWriter fw = new FileWriter(filePath);
+            fw.write(textToAdd);
+            fw.close();
+        } catch (IOException exception) {
+            throw new BriarException();
+        }
     }
 }

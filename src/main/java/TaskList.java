@@ -49,23 +49,41 @@ public class TaskList {
         return str;
     }
 
-    public void mark(int taskNumber) {
-        tasks.get(taskNumber).setDone(true);
+    public String mark(int taskNumber) throws TaskNotInListException {
+        try {
+            Task task = tasks.get(taskNumber);
+            task.setDone(true);
+            return task.toString();
+        } catch (IndexOutOfBoundsException exception) {
+            throw new TaskNotInListException();
+        }
     }
 
-    public void unmark(int taskNumber) {
-        tasks.get(taskNumber).setDone(false);
+    public String unmark(int taskNumber) throws TaskNotInListException {
+        try {
+            Task task = tasks.get(taskNumber);
+            task.setDone(false);
+            return task.toString();
+        } catch (IndexOutOfBoundsException exception) {
+            throw new TaskNotInListException();
+        }
     }
 
     public void add(Task task) {
         tasks.add(task);
     }
 
-    public void delete(int taskNumber) {
-        tasks.remove(taskNumber);
+    public String delete(int taskNumber) throws TaskNotInListException {
+        try {
+            Task task = tasks.get(taskNumber);
+            tasks.remove(taskNumber);
+            return task.toString();
+        } catch (IndexOutOfBoundsException exception) {
+            throw new TaskNotInListException();
+        }
     }
 
-    public String getTaskString(int taskNumber) {
+    private String getTaskString(int taskNumber) {
         return tasks.get(taskNumber).toString();
     }
 
