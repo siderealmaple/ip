@@ -1,4 +1,4 @@
-public abstract class BriarException extends Exception {
+public class BriarException extends Exception {
 
     public BriarException() {
         super();
