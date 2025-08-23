@@ -1,43 +1,40 @@
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.format.DateTimeParseException;
-import java.util.Scanner;
-import java.util.ArrayList;
 
 public class Briar {
-    private Scanner scanner;
+    private Ui ui;
 
-    private TaskList taskList;
+    private TaskList tasks;
 
     private Storage storage;
 
     private Briar(String filePath) {
         this.storage = new Storage(filePath);
-        scanner = new Scanner(System.in);
+        ui = new Ui();
         try {
             String taskString = storage.load();
-            taskList = new TaskList(taskString);
+            tasks = new TaskList(taskString);
         } catch (FileNotFoundException exception) {
-            taskList = new TaskList();
+            tasks = new TaskList();
         }
+    }
+
+    public void run() {
+        ui.showWelcome();
+        listen();
+        ui.showExit();
     }
 
     public static void main(String[] args) {
         Briar briar = new Briar("./data/Briar.txt");
-        briar.greet();
-        briar.listen();
-        briar.exit();
-    }
-
-    private void greet() {
-        System.out.println("Nice to meet you! I'm hungry... I mean Briar!");
-        System.out.println("What can I do for you?");
+        briar.run();
     }
 
     private void listen() {
         String command = "";
         while (true) {
-            command = scanner.nextLine();
+            command = ui.readCommand();
             if (command.equals("bye")) {
                 break;
             } else {
@@ -97,58 +94,54 @@ public class Briar {
                 throw new InvalidCommandException();
             }
             try {
-                storage.write(taskList.taskToTextString());
+                storage.write(tasks.taskToTextString());
             } catch (IOException exception) {
 
             }
         } catch (BriarException exception) {
-            System.out.println(exception.getMessage());
+            ui.showError(exception.getMessage());
         } catch (IndexOutOfBoundsException exception) {
-            System.out.println("Aww, that's not in your list! >.<");
+            ui.showError("Aww, that's not in your list! >.<");
         } catch (NumberFormatException exception) {
-            System.out.println("Aww, " + command + " only takes in a number! >.<");
+            ui.showError("Aww, " + command + " only takes in a number! >.<");
         } catch (DateTimeParseException exception) {
-            System.out.println("Aww, wrong date format! >.<");
+            ui.showError("Aww, wrong date format! >.<");
         }
     }
 
     private void list() {
-        System.out.println("Here's your task list:");
-        System.out.println(taskList.toString());
+        ui.showMessage("Here's your task list:");
+        ui.showMessage(tasks.toString());
     }
 
     private void add(Task.TaskType taskType, String command) throws BriarException{
         Task task;
         task = Task.createTask(taskType, command);
-        taskList.add(task);
-        System.out.println("Okie! I've added this task:");
-        System.out.println(task);
-        System.out.println("You now have " + taskList.getSize() + " tasks in the list!");
+        tasks.add(task);
+        ui.showMessage("Okie! I've added this task:");
+        ui.showMessage(task.toString());
+        ui.showTaskNumber(tasks);
     }
 
     private void delete(int taskNumber) {
-        String selectedTask = taskList.getTaskString(taskNumber);
-        taskList.delete(taskNumber);
-        System.out.println("Okie! I've removed the task:");
-        System.out.println(selectedTask);
-        System.out.println("You now have " + taskList.getSize() + " tasks in the list!");
+        String selectedTask = tasks.getTaskString(taskNumber);
+        tasks.delete(taskNumber);
+        ui.showMessage("Okie! I've removed the task:");
+        ui.showMessage(selectedTask);
+        ui.showTaskNumber(tasks);
     }
 
     private void mark(int taskNumber) {
-        taskList.mark(taskNumber);
-        String selectedTask = taskList.getTaskString(taskNumber);
-        System.out.println("Nice! I've marked this task as done:");
-        System.out.println(selectedTask);
+        tasks.mark(taskNumber);
+        String selectedTask = tasks.getTaskString(taskNumber);
+        ui.showMessage("Nice! I've marked this task as done:");
+        ui.showMessage(selectedTask);
     }
 
     private void unmark(int taskNumber) {
-        taskList.unmark(taskNumber);
-        String selectedTask = taskList.getTaskString(taskNumber);
-        System.out.println("OK, I've marked this task as not done yet:");
-        System.out.println(selectedTask);
-    }
-
-    private void exit() {
-        System.out.println("Bye. Hope to see you again soon!");
+        tasks.unmark(taskNumber);
+        String selectedTask = tasks.getTaskString(taskNumber);
+        ui.showMessage("OK, I've marked this task as not done yet:");
+        ui.showMessage(selectedTask);
     }
 }
