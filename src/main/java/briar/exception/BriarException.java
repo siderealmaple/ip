@@ -1,3 +1,5 @@
+package briar.exception;
+
 public class BriarException extends Exception {
 
     public BriarException() {

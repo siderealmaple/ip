@@ -1,3 +1,5 @@
+package briar.exception;
+
 public class NonNumberException extends BriarException {
 
     public NonNumberException(String command) {

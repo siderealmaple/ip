@@ -1,3 +1,5 @@
+package briar.exception;
+
 public class TaskNotInListException extends BriarException {
 
     public TaskNotInListException() {

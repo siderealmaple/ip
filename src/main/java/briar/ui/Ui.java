@@ -1,4 +1,8 @@
+package briar.ui;
+
 import java.util.Scanner;
+import briar.task.Task;
+import briar.task.TaskList;
 
 public class Ui {
     private Scanner scanner;

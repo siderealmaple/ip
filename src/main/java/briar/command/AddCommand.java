@@ -1,5 +1,13 @@
+package briar.command;
+
+import briar.task.TaskList;
+import briar.ui.Ui;
+import briar.ui.Storage;
+import briar.exception.BriarException;
+import briar.task.Task;
+
 public class AddCommand extends Command {
-    Task task;
+    private Task task;
 
     public AddCommand(Task taskToAdd) {
         super();

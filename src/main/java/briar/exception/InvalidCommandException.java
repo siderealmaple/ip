@@ -1,3 +1,5 @@
+package briar.exception;
+
 public class InvalidCommandException extends BriarException {
 
     public InvalidCommandException() {

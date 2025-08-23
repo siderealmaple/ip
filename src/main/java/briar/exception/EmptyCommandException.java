@@ -1,3 +1,5 @@
+package briar.exception;
+
 public class EmptyCommandException extends BriarException {
 
     public EmptyCommandException(String command) {

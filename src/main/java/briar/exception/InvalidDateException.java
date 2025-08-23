@@ -1,3 +1,5 @@
+package briar.exception;
+
 public class InvalidDateException extends BriarException {
 
     public InvalidDateException() {
