@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Storage {
-    private String filePath;
+    private final String filePath;
 
     public Storage(String filePath) {
         this.filePath = filePath;
@@ -13,7 +13,7 @@ public class Storage {
 
     public String load() throws FileNotFoundException {
         File file = new File(filePath);
-        Scanner scanner = new Scanner(file); // create a Scanner using the File as the source
+        Scanner scanner = new Scanner(file);
         String str = "";
         while (scanner.hasNext()) {
             str += scanner.nextLine() + "\n";
