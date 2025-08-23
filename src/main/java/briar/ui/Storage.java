@@ -7,6 +7,9 @@ import java.io.IOException;
 import java.util.Scanner;
 import briar.exception.BriarException;
 
+/**
+ * Represents the storage used to load and save to file.
+ */
 public class Storage {
     private final String filePath;
 
@@ -14,6 +17,11 @@ public class Storage {
         this.filePath = filePath;
     }
 
+    /**
+     * Loads all data from a file into a string.
+     * @return String of all data in the file.
+     * @throws BriarException If file cannot be found.
+     */
     public String load() throws BriarException {
         try {
             File file = new File(filePath);
@@ -28,13 +36,18 @@ public class Storage {
         }
     }
 
+    /**
+     * Writes all data from a string to a file.
+     * @param textToAdd String to be written into the file.
+     * @throws BriarException If unable to write to file.
+     */
     public void write(String textToAdd) throws BriarException {
         try {
             FileWriter fw = new FileWriter(filePath);
             fw.write(textToAdd);
             fw.close();
         } catch (IOException exception) {
-            throw new BriarException();
+            throw new BriarException("Aww, unable to write to file! >.<");
         }
     }
 }

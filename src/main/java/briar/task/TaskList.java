@@ -1,8 +1,13 @@
 package briar.task;
 
 import java.util.ArrayList;
+
+import briar.exception.BriarException;
 import briar.exception.TaskNotInListException;
 
+/**
+ * Represents list of tasks.
+ */
 public class TaskList {
     ArrayList<Task> tasks;
 
@@ -44,6 +49,9 @@ public class TaskList {
         return tasks;
     }
 
+    /**
+     * Returns the representation of the task to be written into a file as text.
+     */
     public String taskToTextString() {
         String str = "";
         for (Task task : tasks) {
@@ -52,6 +60,12 @@ public class TaskList {
         return str;
     }
 
+    /**
+     * Marks a task as done.
+     * @param taskNumber Task number of the task to be marked as done.
+     * @return String representation of the task marked.
+     * @throws TaskNotInListException If taskNumber is not in the task list.
+     */
     public String mark(int taskNumber) throws TaskNotInListException {
         try {
             Task task = tasks.get(taskNumber);
@@ -62,6 +76,12 @@ public class TaskList {
         }
     }
 
+    /**
+     * Marks a task as undone.
+     * @param taskNumber Task number of the task to be marked as undone.
+     * @return String representation of the task unmarked.
+     * @throws TaskNotInListException If taskNumber is not in the task list.
+     */
     public String unmark(int taskNumber) throws TaskNotInListException {
         try {
             Task task = tasks.get(taskNumber);
@@ -72,10 +92,20 @@ public class TaskList {
         }
     }
 
+    /**
+     * Adds a task to the task list.
+     * @param task Task to be added to the task list.
+     */
     public void add(Task task) {
         tasks.add(task);
     }
 
+    /**
+     * Deletes a task from the task list.
+     * @param taskNumber Task number of the task to be deleted.
+     * @return String representation of the task deleted.
+     * @throws TaskNotInListException If taskNumber is not in the task list.
+     */
     public String delete(int taskNumber) throws TaskNotInListException {
         try {
             Task task = tasks.get(taskNumber);
@@ -86,14 +116,16 @@ public class TaskList {
         }
     }
 
-    private String getTaskString(int taskNumber) {
-        return tasks.get(taskNumber).toString();
-    }
-
+    /**
+     * Returns the number of tasks in the task list.
+     */
     public int getSize() {
         return tasks.size();
     }
 
+    /**
+     * Returns the string representation of the task list.
+     */
     @Override
     public String toString() {
         String str = "";

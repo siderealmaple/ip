@@ -15,8 +15,17 @@ import briar.exception.NonNumberException;
 import briar.exception.InvalidDateException;
 import briar.exception.InvalidCommandException;
 
+/**
+ * Represents the parser to parse strings into commands for the chatbot Briar.
+ */
 public class Parser {
 
+    /**
+     * Converts the string command into a Command to be executed.
+     * @param command String to be parsed and interpreted by the parser.
+     * @return Command to be executed by the chatbot Briar.
+     * @throws BriarException If the command cannot be parsed properly.
+     */
     public static Command parse(String command) throws BriarException {
         String[] splitCommand = command.split(" ");
         switch (splitCommand[0]) {
