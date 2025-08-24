@@ -1,11 +1,18 @@
 package briar.task;
 
+import briar.exception.BriarException;
 import briar.exception.WrongFormatException;
 
+/**
+ * Represents a task that can be stored in a TaskList.
+ */
 public abstract class Task {
     private String description;
     private boolean isDone;
 
+    /**
+     * Represents the type of Task a task is.
+     */
     public enum TaskType {
         TODO,
         DEADLINE,
@@ -17,6 +24,13 @@ public abstract class Task {
         this.isDone = false;
     }
 
+    /**
+     * Creates a task of the specified type with the given command.
+     * @param taskType Type of the task.
+     * @param command Details of the task.
+     * @return Task of the specified type with the details in command.
+     * @throws WrongFormatException If the formatting in command is wrong.
+     */
     public static Task createTask(TaskType taskType, String command) throws WrongFormatException {
         String[] splitCommand;
         switch (taskType) {
@@ -39,6 +53,9 @@ public abstract class Task {
         return null;
     }
 
+    /**
+     * Returns the isDone status of the task as a string.
+     */
     @Override
     public String toString() {
         String str = "[";
@@ -51,6 +68,9 @@ public abstract class Task {
         return str;
     }
 
+    /**
+     * Returns the isDone status of the task as a string to be written into a file as text.
+     */
     public String toText() {
         String str = "";
         if (isDone) {

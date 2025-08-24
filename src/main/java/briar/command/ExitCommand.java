@@ -5,6 +5,9 @@ import briar.ui.Ui;
 import briar.ui.Storage;
 import briar.exception.BriarException;
 
+/**
+ * Represents a command that causes the chatbot to exit.
+ */
 public class ExitCommand extends Command {
 
     public ExitCommand() {
@@ -16,11 +19,17 @@ public class ExitCommand extends Command {
 
     }
 
+    /**
+     * Returns whether the command is an ExitCommand.
+     */
     @Override
     public boolean isExit() {
         return true;
     }
 
+    /**
+     * Returns the string representation of the command.
+     */
     @Override
     public String toString() {
         return "Exit";

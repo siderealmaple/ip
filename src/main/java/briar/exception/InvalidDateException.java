@@ -1,5 +1,8 @@
 package briar.exception;
 
+/**
+ * Represents the exception thrown when a command has an invalid date.
+ */
 public class InvalidDateException extends BriarException {
 
     public InvalidDateException() {

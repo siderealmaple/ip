@@ -4,6 +4,9 @@ import briar.task.TaskList;
 import briar.exception.BriarException;
 import briar.command.Command;
 
+/**
+ * Represents the chatbot Briar.
+ */
 public class Briar {
     private Ui ui;
 
@@ -22,6 +25,9 @@ public class Briar {
         }
     }
 
+    /**
+     * Runs the Briar chatbot.
+     */
     public void run() {
         ui.showWelcome();
         listen();
