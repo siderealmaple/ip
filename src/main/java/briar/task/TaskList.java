@@ -116,6 +116,17 @@ public class TaskList {
         }
     }
 
+    public String find(String keyword) {
+        String taskListString = "";
+        for (int i = 0; i < tasks.size(); ++i) {
+            Task task = tasks.get(i);
+            if (task.hasKeyword(keyword)) {
+                taskListString += (i + 1) + ". " + task + System.lineSeparator();
+            }
+        }
+        return taskListString;
+    }
+
     /**
      * Returns the number of tasks in the task list.
      */
