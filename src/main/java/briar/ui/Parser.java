@@ -31,8 +31,10 @@ public class Parser {
         switch (splitCommand[0]) {
         case "bye":
             return new ExitCommand();
+            // No break as code either returns
         case "list":
             return new ListCommand();
+            // No break as code either returns
         case "mark":
             if (splitCommand.length <= 1) {
                 throw new EmptyCommandException(command);
@@ -42,6 +44,7 @@ public class Parser {
             } catch (NumberFormatException exception) {
                 throw new NonNumberException(splitCommand[0]);
             }
+            // No break as code either returns or throws exception
         case "unmark":
             if (splitCommand.length <= 1) {
                 throw new EmptyCommandException(command);
@@ -51,11 +54,13 @@ public class Parser {
             } catch (NumberFormatException exception) {
                 throw new NonNumberException(splitCommand[0]);
             }
+            // No break as code either returns or throws exception
         case "todo":
             if (splitCommand.length <= 1) {
                 throw new EmptyCommandException(command);
             }
             return new AddCommand(Task.createTask(Task.TaskType.TODO, command.substring(splitCommand[0].length() + 1)));
+            // No break as code either returns or throws exception
         case "deadline":
             if (splitCommand.length <= 2) {
                 throw new EmptyCommandException(command);
@@ -65,11 +70,13 @@ public class Parser {
             } catch (DateTimeParseException exception) {
                 throw new InvalidDateException();
             }
+            // No break as code either returns or throws exception
         case "event":
             if (splitCommand.length <= 3) {
                 throw new EmptyCommandException(command);
             }
             return new AddCommand(Task.createTask(Task.TaskType.EVENT, command.substring(splitCommand[0].length() + 1)));
+            // No break as code either returns or throws exception
         case "delete":
             if (splitCommand.length <= 1) {
                 throw new EmptyCommandException(command);
@@ -79,8 +86,10 @@ public class Parser {
             } catch (NumberFormatException exception) {
                 throw new NonNumberException(splitCommand[0]);
             }
+            // No break as code either returns or throws exception
         default:
 
+            break;
         }
 
         throw new InvalidCommandException();
