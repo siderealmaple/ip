@@ -48,6 +48,14 @@ public class Ui {
         System.out.println("OK, I've marked this task as not done yet:" + System.lineSeparator() + taskString);
     }
 
+    public void showFoundTasks(String taskString) {
+        if (taskString.isEmpty()) {
+            System.out.println("Oops! No tasks match the keyword given! >.<");
+        } else {
+            System.out.println("Okie! Here are the tasks that match in your list:" + System.lineSeparator() + taskString);
+        }
+    }
+
     public void showExit() {
         System.out.println("Bye. Hope to see you again soon!");
     }

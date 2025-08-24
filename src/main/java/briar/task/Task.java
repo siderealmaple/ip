@@ -65,4 +65,8 @@ public abstract class Task {
     public void setDone(boolean isDone) {
         this.isDone = isDone;
     }
+
+    public boolean hasKeyword(String keyword) {
+        return description.contains(keyword);
+    }
 }

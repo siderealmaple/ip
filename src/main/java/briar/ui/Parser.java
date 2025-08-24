@@ -1,13 +1,8 @@
 package briar.ui;
 
 import java.time.format.DateTimeParseException;
-import briar.command.Command;
-import briar.command.AddCommand;
-import briar.command.DeleteCommand;
-import briar.command.ExitCommand;
-import briar.command.ListCommand;
-import briar.command.MarkCommand;
-import briar.command.UnmarkCommand;
+
+import briar.command.*;
 import briar.task.Task;
 import briar.exception.BriarException;
 import briar.exception.EmptyCommandException;
@@ -70,6 +65,11 @@ public class Parser {
             } catch (NumberFormatException exception) {
                 throw new NonNumberException(splitCommand[0]);
             }
+        case "find":
+            if (splitCommand.length <= 1) {
+                throw new EmptyCommandException(command);
+            }
+            return new FindCommand(splitCommand[1]);
         default:
 
         }

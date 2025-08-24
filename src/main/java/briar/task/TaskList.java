@@ -90,6 +90,17 @@ public class TaskList {
         return tasks.get(taskNumber).toString();
     }
 
+    public String find(String keyword) {
+        String taskListString = "";
+        for (int i = 0; i < tasks.size(); ++i) {
+            Task task = tasks.get(i);
+            if (task.hasKeyword(keyword)) {
+                taskListString += (i + 1) + ". " + task + System.lineSeparator();
+            }
+        }
+        return taskListString;
+    }
+
     public int getSize() {
         return tasks.size();
     }
