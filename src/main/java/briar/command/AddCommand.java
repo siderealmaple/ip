@@ -1,10 +1,10 @@
 package briar.command;
 
-import briar.task.TaskList;
-import briar.ui.Ui;
-import briar.ui.Storage;
 import briar.exception.BriarException;
 import briar.task.Task;
+import briar.task.TaskList;
+import briar.ui.Storage;
+import briar.ui.Ui;
 
 /**
  * Represents a command that adds a Task into a TaskList.
@@ -12,6 +12,10 @@ import briar.task.Task;
 public class AddCommand extends Command {
     private Task task;
 
+    /**
+     * Creates a command to add the stored task to a task list.
+     * @param taskToAdd Task to be added to the task list.
+     */
     public AddCommand(Task taskToAdd) {
         super();
         task = taskToAdd;

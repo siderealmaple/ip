@@ -7,7 +7,6 @@ public class BriarException extends Exception {
 
     public BriarException() {
         super();
-
     }
 
     public BriarException(String message) {

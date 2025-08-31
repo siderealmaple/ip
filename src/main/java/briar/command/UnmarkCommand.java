@@ -1,16 +1,20 @@
 package briar.command;
 
-import briar.task.TaskList;
-import briar.ui.Ui;
-import briar.ui.Storage;
 import briar.exception.BriarException;
+import briar.task.TaskList;
+import briar.ui.Storage;
+import briar.ui.Ui;
 
 /**
  * Represents a command that marks a Task in a TaskList as not done.
  */
 public class UnmarkCommand extends Command {
-    int taskNumber;
+    private int taskNumber;
 
+    /**
+     * Creates a command to marks a Task in a TaskList as not done.
+     * @param taskNumber Index of the task to be marked as undone.
+     */
     public UnmarkCommand(int taskNumber) {
         super();
         this.taskNumber = taskNumber;

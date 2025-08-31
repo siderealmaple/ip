@@ -2,13 +2,20 @@ package briar.ui;
 
 import java.time.format.DateTimeParseException;
 
-import briar.command.*;
-import briar.task.Task;
+import briar.command.AddCommand;
+import briar.command.Command;
+import briar.command.DeleteCommand;
+import briar.command.ExitCommand;
+import briar.command.FindCommand;
+import briar.command.ListCommand;
+import briar.command.MarkCommand;
+import briar.command.UnmarkCommand;
 import briar.exception.BriarException;
 import briar.exception.EmptyCommandException;
-import briar.exception.NonNumberException;
-import briar.exception.InvalidDateException;
 import briar.exception.InvalidCommandException;
+import briar.exception.InvalidDateException;
+import briar.exception.NonNumberException;
+import briar.task.Task;
 
 /**
  * Represents the parser to parse strings into commands for the chatbot Briar.
@@ -61,7 +68,8 @@ public class Parser {
                 throw new EmptyCommandException(command);
             }
             try {
-                return new AddCommand(Task.createTask(Task.TaskType.DEADLINE, command.substring(splitCommand[0].length() + 1)));
+                return new AddCommand(Task.createTask(Task.TaskType.DEADLINE,
+                        command.substring(splitCommand[0].length() + 1)));
             } catch (DateTimeParseException exception) {
                 throw new InvalidDateException();
             }
@@ -70,7 +78,8 @@ public class Parser {
             if (splitCommand.length <= 3) {
                 throw new EmptyCommandException(command);
             }
-            return new AddCommand(Task.createTask(Task.TaskType.EVENT, command.substring(splitCommand[0].length() + 1)));
+            return new AddCommand(Task.createTask(Task.TaskType.EVENT,
+                    command.substring(splitCommand[0].length() + 1)));
             // No break as code either returns or throws exception
         case "delete":
             if (splitCommand.length <= 1) {

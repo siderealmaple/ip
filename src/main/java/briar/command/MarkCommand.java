@@ -1,16 +1,20 @@
 package briar.command;
 
-import briar.task.TaskList;
-import briar.ui.Ui;
-import briar.ui.Storage;
 import briar.exception.BriarException;
+import briar.task.TaskList;
+import briar.ui.Storage;
+import briar.ui.Ui;
 
 /**
  * Represents a command that marks a Task in a TaskList as done.
  */
 public class MarkCommand extends Command {
-    int taskNumber;
+    private int taskNumber;
 
+    /**
+     * Creates a command to marks a Task in a TaskList as done.
+     * @param taskNumber Index of the task to be marked as done.
+     */
     public MarkCommand(int taskNumber) {
         super();
         this.taskNumber = taskNumber;

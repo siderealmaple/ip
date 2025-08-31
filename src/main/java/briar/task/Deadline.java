@@ -7,8 +7,13 @@ import java.time.format.DateTimeFormatter;
  * Represents a deadline task that can be stored in a TaskList.
  */
 public class Deadline extends Task {
-    LocalDate date;
+    private LocalDate date;
 
+    /**
+     * Creates a Deadline task.
+     * @param description Description of task.
+     * @param date Deadline date of the task in yyyy-mm-dd format.
+     */
     public Deadline(String description, String date) {
         super(description);
         this.date = LocalDate.parse(date);

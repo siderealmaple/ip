@@ -1,9 +1,9 @@
 package briar.command;
 
-import briar.task.TaskList;
-import briar.ui.Ui;
-import briar.ui.Storage;
 import briar.exception.BriarException;
+import briar.task.TaskList;
+import briar.ui.Storage;
+import briar.ui.Ui;
 
 /**
  * Represents a command that lists all Tasks from a TaskList.

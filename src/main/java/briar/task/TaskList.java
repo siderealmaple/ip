@@ -2,14 +2,13 @@ package briar.task;
 
 import java.util.ArrayList;
 
-import briar.exception.BriarException;
 import briar.exception.TaskNotInListException;
 
 /**
  * Represents list of tasks.
  */
 public class TaskList {
-    ArrayList<Task> tasks;
+    private ArrayList<Task> tasks;
 
     public TaskList() {
         tasks = new ArrayList<Task>();
@@ -116,6 +115,10 @@ public class TaskList {
         }
     }
 
+    /**
+     * Returns string of all tasks with the given keyword in their descriptions.
+     * @param keyword Keyword to look for in task descriptions.
+     */
     public String find(String keyword) {
         String taskListString = "";
         for (int i = 0; i < tasks.size(); ++i) {
@@ -141,7 +144,7 @@ public class TaskList {
     public String toString() {
         String str = "";
         for (int i = 0; i < tasks.size(); ++i) {
-            str +=  (i + 1) + ". " + tasks.get(i).toString() + System.lineSeparator();
+            str += (i + 1) + ". " + tasks.get(i).toString() + System.lineSeparator();
         }
         return str;
     }

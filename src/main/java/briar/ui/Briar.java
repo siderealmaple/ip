@@ -1,8 +1,8 @@
 package briar.ui;
 
-import briar.task.TaskList;
-import briar.exception.BriarException;
 import briar.command.Command;
+import briar.exception.BriarException;
+import briar.task.TaskList;
 
 /**
  * Represents the chatbot Briar.

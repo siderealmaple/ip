@@ -1,16 +1,20 @@
 package briar.command;
 
-import briar.task.TaskList;
-import briar.ui.Ui;
-import briar.ui.Storage;
 import briar.exception.BriarException;
+import briar.task.TaskList;
+import briar.ui.Storage;
+import briar.ui.Ui;
 
 /**
  * Represents a command that deletes a Task from a TaskList.
  */
 public class DeleteCommand extends Command {
-    int taskNumber;
+    private int taskNumber;
 
+    /**
+     * Creates a command to add the stored task to a task list.
+     * @param taskNumber Index of the task to be deleted from the task list.
+     */
     public DeleteCommand(int taskNumber) {
         super();
         this.taskNumber = taskNumber;
