@@ -18,9 +18,10 @@ public class Ui {
     /**
      * Displays welcome message.
      */
-    public void showWelcome() {
-        System.out.println("Nice to meet you! I'm hungry... I mean Briar!");
-        System.out.println("What can I do for you?");
+    public String showWelcome() {
+        String response = "Nice to meet you! I'm hungry... I mean Briar!" + System.lineSeparator() + "What can I do for you?";
+        System.out.println(response);
+        return response;
     }
 
     /**
@@ -33,71 +34,89 @@ public class Ui {
     /**
      * Displays error message.
      */
-    public void showError(String errorMessage) {
+    public String showError(String errorMessage) {
         System.out.println(errorMessage);
+        return errorMessage;
     }
 
     /**
      * Displays number of tasks in the list.
      */
-    public void showTaskNumber(TaskList tasks) {
-        System.out.println("You now have " + tasks.getSize() + " tasks in the list!");
+    public String showTaskNumber(TaskList tasks) {
+        String response = "You now have " + tasks.getSize() + " tasks in the list!";
+        System.out.println(response);
+        return response;
     }
 
     /**
      * Displays task list.
      */
-    public void showTaskList(TaskList tasks) {
-        System.out.println("Here's your task list:" + System.lineSeparator() + tasks.toString());
+    public String showTaskList(TaskList tasks) {
+        String response = "Here's your task list:" + System.lineSeparator() + tasks.toString();
+        System.out.println(response);
+        return response;
     }
 
     /**
      * Displays task that was added.
      * @param task Task to be displayed.
      */
-    public void showAddedTask(Task task) {
-        System.out.println("Okie! I've added this task:" + System.lineSeparator() + task);
+    public String showAddedTask(Task task) {
+        String response = "Okie! I've added this task:" + System.lineSeparator() + task;
+        System.out.println(response);
+        return response;
     }
 
     /**
      * Displays task that was deleted.
      * @param taskString String representation of task that was deleted.
      */
-    public void showDeletedTask(String taskString) {
-        System.out.println("Okie! I've removed this task:" + System.lineSeparator() + taskString);
+    public String showDeletedTask(String taskString) {
+        String response = "Okie! I've removed this task:" + System.lineSeparator() + taskString;
+        System.out.println(response);
+        return response;
     }
 
     /**
      * Displays task that was marked as done.
      * @param taskString String representation of task that was marked.
      */
-    public void showMarkedTask(String taskString) {
-        System.out.println("Nice! I've marked this task as done:" + System.lineSeparator() + taskString);
+    public String showMarkedTask(String taskString) {
+        String response = "Nice! I've marked this task as done:" + System.lineSeparator() + taskString;
+        System.out.println(response);
+        return response;
     }
 
     /**
      * Displays task that was marked as undone.
      * @param taskString String representation of task that was unmarked.
      */
-    public void showUnmarkedTask(String taskString) {
-        System.out.println("OK, I've marked this task as not done yet:" + System.lineSeparator() + taskString);
+    public String showUnmarkedTask(String taskString) {
+        String response = "OK, I've marked this task as not done yet:" + System.lineSeparator() + taskString;
+        System.out.println(response);
+        return response;
     }
 
     /**
      * Displays tasks found.
      * @param taskString String representation of tasks found.
      */
-    public void showFoundTasks(String taskString) {
+    public String showFoundTasks(String taskString) {
+        String response = "";
         if (taskString.isEmpty()) {
-            System.out.println("Oops! No tasks match the keyword given! >.<");
+            response = "Oops! No tasks match the keyword given! >.<";
         } else {
-            System.out.println("Okie! Here are the tasks that match in your list:"
+            response = "Okie! Here are the tasks that match in your list:"
                     + System.lineSeparator()
-                    + taskString);
+                    + taskString;
         }
+        System.out.println(response);
+        return response;
     }
 
-    public void showExit() {
-        System.out.println("Bye. Hope to see you again soon!");
+    public String showExit() {
+        String response = "Bye. Hope to see you again soon!";
+        System.out.println(response);
+        return response;
     }
 }

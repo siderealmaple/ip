@@ -21,9 +21,9 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws BriarException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws BriarException {
         String taskListString = tasks.find(keyword);
-        ui.showFoundTasks(taskListString);
+        return ui.showFoundTasks(taskListString);
     }
 
     @Override

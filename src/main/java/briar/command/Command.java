@@ -18,9 +18,10 @@ public abstract class Command {
      * @param tasks Task list of the chatbot.
      * @param ui Ui used by the chatbot to display.
      * @param storage Storage used to save and load the task list.
+     * @return Response from Briar after completing the command
      * @throws BriarException If the command cannot be executed properly.
      */
-    public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws BriarException;
+    public abstract String execute(TaskList tasks, Ui ui, Storage storage) throws BriarException;
 
     /**
      * Returns whether the command is an ExitCommand.

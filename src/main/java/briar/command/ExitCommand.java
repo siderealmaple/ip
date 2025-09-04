@@ -4,6 +4,7 @@ import briar.exception.BriarException;
 import briar.task.TaskList;
 import briar.ui.Storage;
 import briar.ui.Ui;
+import javafx.application.Platform;
 
 /**
  * Represents a command that causes the chatbot to exit.
@@ -15,8 +16,10 @@ public class ExitCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws BriarException {
-
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws BriarException {
+        String response = ui.showExit();
+        Platform.exit();
+        return response;
     }
 
     /**
