@@ -1,9 +1,11 @@
 package briar.ui;
 
-import briar.exception.BriarException;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import briar.exception.BriarException;
 
 public class ParserTest {
     @Test
@@ -11,7 +13,7 @@ public class ParserTest {
         try {
             assertEquals("Exit", Parser.parse("bye").toString());
         } catch (BriarException e) {
-
+            fail();
         }
     }
 
@@ -20,7 +22,7 @@ public class ParserTest {
         try {
             assertEquals("List", Parser.parse("list").toString());
         } catch (BriarException e) {
-
+            fail();
         }
     }
 
@@ -29,7 +31,7 @@ public class ParserTest {
         try {
             assertEquals("Mark task 1", Parser.parse("mark 2").toString());
         } catch (BriarException e) {
-
+            fail();
         }
     }
 
@@ -38,7 +40,7 @@ public class ParserTest {
         try {
             assertEquals("Unmark task 1", Parser.parse("unmark 2").toString());
         } catch (BriarException e) {
-
+            fail();
         }
     }
 
@@ -47,7 +49,7 @@ public class ParserTest {
         try {
             assertEquals("Add: [T][ ] test", Parser.parse("todo test").toString());
         } catch (BriarException e) {
-
+            fail();
         }
     }
 
@@ -56,7 +58,7 @@ public class ParserTest {
         try {
             assertEquals("Delete task 1", Parser.parse("delete 2").toString());
         } catch (BriarException e) {
-
+            fail();
         }
     }
 }

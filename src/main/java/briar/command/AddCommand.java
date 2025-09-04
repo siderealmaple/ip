@@ -26,14 +26,16 @@ public class AddCommand extends Command {
      * @param tasks Task list of the chatbot.
      * @param ui Ui used by the chatbot to display.
      * @param storage Storage used to save and load the task list.
+     * @return Response from Briar after completing the command
      * @throws BriarException If writing to file fails.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws BriarException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws BriarException {
         tasks.add(task);
-        ui.showAddedTask(task);
-        ui.showTaskNumber(tasks);
+        String response = "";
+        response += ui.showAddedTask(task) + System.lineSeparator() + ui.showTaskNumber(tasks);
         storage.write(tasks.taskToTextString());
+        return response;
     }
 
     /**
