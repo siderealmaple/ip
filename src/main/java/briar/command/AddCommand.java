@@ -18,6 +18,7 @@ public class AddCommand extends Command {
      */
     public AddCommand(Task taskToAdd) {
         super();
+        assert taskToAdd != null : "taskToAdd should not be null";
         task = taskToAdd;
     }
 
