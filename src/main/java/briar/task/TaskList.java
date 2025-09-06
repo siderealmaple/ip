@@ -14,7 +14,12 @@ public class TaskList {
         tasks = new ArrayList<Task>();
     }
 
+    /**
+     * Creates list of tasks from a taskListString.
+     * @param taskListString taskListString read from a file from storage
+     */
     public TaskList(String taskListString) {
+        assert taskListString != null : "taskListString should not be null";
         tasks = stringToTasks(taskListString);
     }
 
@@ -66,6 +71,7 @@ public class TaskList {
      * @throws TaskNotInListException If taskNumber is not in the task list.
      */
     public String mark(int taskNumber) throws TaskNotInListException {
+        assert taskNumber >= 0 : "taskNumber should be >= 0";
         try {
             Task task = tasks.get(taskNumber);
             task.setDone(true);
@@ -82,6 +88,7 @@ public class TaskList {
      * @throws TaskNotInListException If taskNumber is not in the task list.
      */
     public String unmark(int taskNumber) throws TaskNotInListException {
+        assert taskNumber >= 0 : "taskNumber should be >= 0";
         try {
             Task task = tasks.get(taskNumber);
             task.setDone(false);
@@ -96,6 +103,7 @@ public class TaskList {
      * @param task Task to be added to the task list.
      */
     public void add(Task task) {
+        assert task != null : "task should not be null";
         tasks.add(task);
     }
 
@@ -106,6 +114,7 @@ public class TaskList {
      * @throws TaskNotInListException If taskNumber is not in the task list.
      */
     public String delete(int taskNumber) throws TaskNotInListException {
+        assert taskNumber >= 0 : "taskNumber should be >= 0";
         try {
             Task task = tasks.get(taskNumber);
             tasks.remove(taskNumber);
@@ -120,6 +129,7 @@ public class TaskList {
      * @param keyword Keyword to look for in task descriptions.
      */
     public String find(String keyword) {
+        assert keyword != null : "keyword should not be null";
         String taskListString = "";
         for (int i = 0; i < tasks.size(); ++i) {
             Task task = tasks.get(i);
