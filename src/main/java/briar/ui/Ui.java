@@ -19,7 +19,8 @@ public class Ui {
      * Displays welcome message.
      */
     public String showWelcome() {
-        String response = "Nice to meet you! I'm hungry... I mean Briar!" + System.lineSeparator() + "What can I do for you?";
+        String response = "Nice to meet you! I'm hungry... I mean Briar!"
+                + System.lineSeparator() + "What can I do for you?";
         System.out.println(response);
         return response;
     }
@@ -114,6 +115,9 @@ public class Ui {
         return response;
     }
 
+    /**
+     * Displays exit message.
+     */
     public String showExit() {
         String response = "Bye. Hope to see you again soon!";
         System.out.println(response);

@@ -31,7 +31,7 @@ public class TaskTest {
     public void createTask_eventTask_success() {
         try {
             assertEquals("[E][ ] test todo task (from:2pm to:4pm)",
-                    Task.createTask(Task.TaskType.DEADLINE, "test todo task /from 2pm /to 4pm").toString());
+                    Task.createTask(Task.TaskType.EVENT, "test todo task /from 2pm /to 4pm").toString());
         } catch (WrongFormatException e) {
             fail();
         }

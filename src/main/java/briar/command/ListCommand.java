@@ -18,8 +18,8 @@ public class ListCommand extends Command {
      * Executes the command to list all tasks in the task list.
      * @param tasks Task list of the chatbot.
      * @param ui Ui used by the chatbot to display.
-     * @return Response from Briar after completing the command
      * @param storage Storage used to save and load the task list.
+     * @return Response from Briar after completing the command
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws BriarException {
