@@ -31,8 +31,7 @@ public class MarkCommand extends Command {
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws BriarException {
         String taskString = tasks.mark(taskNumber);
-        String response = "";
-        response = ui.showMarkedTask(taskString);
+        String response = ui.showMarkedTask(taskString);
         storage.write(tasks.taskToTextString());
         return response;
     }

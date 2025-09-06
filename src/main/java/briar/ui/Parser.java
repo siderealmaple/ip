@@ -15,6 +15,8 @@ import briar.exception.EmptyCommandException;
 import briar.exception.InvalidCommandException;
 import briar.exception.InvalidDateException;
 import briar.exception.NonNumberException;
+import briar.exception.WrongFormatException;
+import briar.task.Deadline;
 import briar.task.Task;
 
 /**
@@ -38,69 +40,104 @@ public class Parser {
             return new ListCommand();
             // No break as code either returns
         case "mark":
-            if (splitCommand.length <= 1) {
-                throw new EmptyCommandException(command);
-            }
-            try {
-                return new MarkCommand(Integer.parseInt(splitCommand[1]) - 1);
-            } catch (NumberFormatException exception) {
-                throw new NonNumberException(splitCommand[0]);
-            }
+            return parseMarkCommand(splitCommand);
             // No break as code either returns or throws exception
         case "unmark":
-            if (splitCommand.length <= 1) {
-                throw new EmptyCommandException(command);
-            }
-            try {
-                return new UnmarkCommand(Integer.parseInt(splitCommand[1]) - 1);
-            } catch (NumberFormatException exception) {
-                throw new NonNumberException(splitCommand[0]);
-            }
+            return parseUnmarkCommand(splitCommand);
             // No break as code either returns or throws exception
         case "todo":
-            if (splitCommand.length <= 1) {
-                throw new EmptyCommandException(command);
-            }
-            return new AddCommand(Task.createTask(Task.TaskType.TODO, command.substring(splitCommand[0].length() + 1)));
+            return parseTodoCommand(splitCommand);
             // No break as code either returns or throws exception
         case "deadline":
-            if (splitCommand.length <= 2) {
-                throw new EmptyCommandException(command);
-            }
-            try {
-                return new AddCommand(Task.createTask(Task.TaskType.DEADLINE,
-                        command.substring(splitCommand[0].length() + 1)));
-            } catch (DateTimeParseException exception) {
-                throw new InvalidDateException();
-            }
+            return parseDeadlineCommand(splitCommand, command);
             // No break as code either returns or throws exception
         case "event":
-            if (splitCommand.length <= 3) {
-                throw new EmptyCommandException(command);
-            }
-            return new AddCommand(Task.createTask(Task.TaskType.EVENT,
-                    command.substring(splitCommand[0].length() + 1)));
+            return parseEventCommand(splitCommand, command);
             // No break as code either returns or throws exception
         case "delete":
-            if (splitCommand.length <= 1) {
-                throw new EmptyCommandException(command);
-            }
-            try {
-                return new DeleteCommand(Integer.parseInt(splitCommand[1]) - 1);
-            } catch (NumberFormatException exception) {
-                throw new NonNumberException(splitCommand[0]);
-            }
+            return parseDeleteCommand(splitCommand);
             // No break as code either returns or throws exception
         case "find":
-            if (splitCommand.length <= 1) {
-                throw new EmptyCommandException(command);
-            }
-            return new FindCommand(splitCommand[1]);
+            return parseFindCommand(splitCommand);
         default:
-
-            break;
+            throw new InvalidCommandException();
+            // No break as code throws exception
         }
+    }
 
-        throw new InvalidCommandException();
+    private static MarkCommand parseMarkCommand(String[] splitCommand)
+            throws EmptyCommandException, NonNumberException {
+        if (splitCommand.length <= 1) {
+            throw new EmptyCommandException(splitCommand[0]);
+        }
+        try {
+            int taskNumber = Integer.parseInt(splitCommand[1]) - 1;
+            return new MarkCommand(taskNumber);
+        } catch (NumberFormatException exception) {
+            throw new NonNumberException(splitCommand[0]);
+        }
+    }
+
+    private static UnmarkCommand parseUnmarkCommand(String[] splitCommand)
+            throws EmptyCommandException, NonNumberException {
+        if (splitCommand.length <= 1) {
+            throw new EmptyCommandException(splitCommand[0]);
+        }
+        try {
+            int taskNumber = Integer.parseInt(splitCommand[1]) - 1;
+            return new UnmarkCommand(taskNumber);
+        } catch (NumberFormatException exception) {
+            throw new NonNumberException(splitCommand[0]);
+        }
+    }
+
+    private static AddCommand parseTodoCommand(String[] splitCommand)
+            throws EmptyCommandException, WrongFormatException {
+        if (splitCommand.length <= 1) {
+            throw new EmptyCommandException(splitCommand[0]);
+        }
+        return new AddCommand(Task.createTask(Task.TaskType.TODO, splitCommand[1]));
+    }
+
+    private static AddCommand parseDeadlineCommand(String[] splitCommand, String command)
+            throws EmptyCommandException, WrongFormatException, InvalidDateException {
+        if (splitCommand.length <= 2) {
+            throw new EmptyCommandException(splitCommand[0]);
+        }
+        try {
+            String subCommand = command.substring(splitCommand[0].length() + 1);
+            return new AddCommand(Task.createTask(Task.TaskType.DEADLINE, subCommand));
+        } catch (DateTimeParseException exception) {
+            throw new InvalidDateException();
+        }
+    }
+
+    private static AddCommand parseEventCommand(String[] splitCommand, String command)
+            throws EmptyCommandException, WrongFormatException {
+        if (splitCommand.length <= 3) {
+            throw new EmptyCommandException(splitCommand[0]);
+        }
+        String subCommand = command.substring(splitCommand[0].length() + 1);
+        return new AddCommand(Task.createTask(Task.TaskType.EVENT, subCommand));
+    }
+
+    private static DeleteCommand parseDeleteCommand(String[] splitCommand)
+            throws EmptyCommandException, NonNumberException {
+        if (splitCommand.length <= 1) {
+            throw new EmptyCommandException(splitCommand[0]);
+        }
+        try {
+            return new DeleteCommand(Integer.parseInt(splitCommand[1]) - 1);
+        } catch (NumberFormatException exception) {
+            throw new NonNumberException(splitCommand[0]);
+        }
+    }
+
+    private static FindCommand parseFindCommand(String[] splitCommand)
+            throws EmptyCommandException, NonNumberException {
+        if (splitCommand.length <= 1) {
+            throw new EmptyCommandException(splitCommand[0]);
+        }
+        return new FindCommand(splitCommand[1]);
     }
 }
