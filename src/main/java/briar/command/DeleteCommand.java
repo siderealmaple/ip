@@ -32,8 +32,7 @@ public class DeleteCommand extends Command {
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws BriarException {
         String taskString = tasks.delete(taskNumber);
-        String response = "";
-        response += ui.showDeletedTask(taskString) + System.lineSeparator() + ui.showTaskNumber(tasks);
+        String response = ui.showDeletedTask(taskString) + System.lineSeparator() + ui.showTaskNumber(tasks);
         storage.write(tasks.taskToTextString());
         return response;
     }

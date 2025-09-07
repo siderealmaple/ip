@@ -33,8 +33,7 @@ public class AddCommand extends Command {
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws BriarException {
         tasks.add(task);
-        String response = "";
-        response += ui.showAddedTask(task) + System.lineSeparator() + ui.showTaskNumber(tasks);
+        String response = ui.showAddedTask(task) + System.lineSeparator() + ui.showTaskNumber(tasks);
         storage.write(tasks.taskToTextString());
         return response;
     }

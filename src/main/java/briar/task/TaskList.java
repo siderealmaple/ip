@@ -25,26 +25,24 @@ public class TaskList {
 
     private static ArrayList<Task> stringToTasks(String taskListString) {
         String[] splitTaskStrings = taskListString.split("\n");
+        return splitStringsToTaskList(splitTaskStrings);
+    }
+
+    private static ArrayList<Task> splitStringsToTaskList(String[] splitTaskStrings) {
         ArrayList<Task> tasks = new ArrayList<Task>();
         for (int i = 0; i < splitTaskStrings.length; ++i) {
             String[] splitStrings = splitTaskStrings[i].split("\\|");
             switch (splitStrings[0]) {
             case "T":
-                Task toDoTask = new Todo(splitStrings[2]);
-                boolean isToDoDone = Integer.parseInt(splitStrings[1]) != 0;
-                toDoTask.setDone(isToDoDone);
-                tasks.add(toDoTask);
+                Task todoTask = stringToTodo(splitStrings);
+                tasks.add(todoTask);
                 break;
             case "D":
-                Task deadlineTask = new Deadline(splitStrings[2], splitStrings[3]);
-                boolean isDeadlineDone = Integer.parseInt(splitStrings[1]) != 0;
-                deadlineTask.setDone(isDeadlineDone);
+                Task deadlineTask = stringToDeadline(splitStrings);
                 tasks.add(deadlineTask);
                 break;
             case "E":
-                Task eventTask = new Event(splitStrings[2], splitStrings[3], splitStrings[4]);
-                boolean isEventDone = Integer.parseInt(splitStrings[1]) != 0;
-                eventTask.setDone(isEventDone);
+                Task eventTask = stringToEvent(splitStrings);
                 tasks.add(eventTask);
                 break;
             default:
@@ -53,15 +51,36 @@ public class TaskList {
         return tasks;
     }
 
+    private static Todo stringToTodo(String[] splitStrings) {
+        Todo todoTask = new Todo(splitStrings[2]);
+        boolean isToDoDone = Integer.parseInt(splitStrings[1]) != 0;
+        todoTask.setDone(isToDoDone);
+        return todoTask;
+    }
+
+    private static Deadline stringToDeadline(String[] splitStrings) {
+        Deadline deadlineTask = new Deadline(splitStrings[2], splitStrings[3]);
+        boolean isDeadlineDone = Integer.parseInt(splitStrings[1]) != 0;
+        deadlineTask.setDone(isDeadlineDone);
+        return deadlineTask;
+    }
+
+    private static Event stringToEvent(String[] splitStrings) {
+        Event eventTask = new Event(splitStrings[2], splitStrings[3], splitStrings[4]);
+        boolean isEventDone = Integer.parseInt(splitStrings[1]) != 0;
+        eventTask.setDone(isEventDone);
+        return eventTask;
+    }
+
     /**
      * Returns the representation of the task to be written into a file as text.
      */
     public String taskToTextString() {
-        String str = "";
+        StringBuilder str = new StringBuilder();
         for (Task task : tasks) {
-            str += task.toText() + System.lineSeparator();
+            str.append(task.toText()).append(System.lineSeparator());
         }
-        return str;
+        return str.toString();
     }
 
     /**
