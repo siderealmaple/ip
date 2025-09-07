@@ -16,7 +16,6 @@ import briar.exception.InvalidCommandException;
 import briar.exception.InvalidDateException;
 import briar.exception.NonNumberException;
 import briar.exception.WrongFormatException;
-import briar.task.Deadline;
 import briar.task.Task;
 
 /**
