@@ -35,6 +35,8 @@ public abstract class Task {
      * @throws WrongFormatException If the formatting in command is wrong.
      */
     public static Task createTask(TaskType taskType, String command) throws WrongFormatException {
+        assert taskType != null : "taskType should not be null";
+        assert command != null : "command should not be null";
         String[] splitCommand;
         switch (taskType) {
         case TODO:

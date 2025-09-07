@@ -17,6 +17,7 @@ public class MarkCommand extends Command {
      */
     public MarkCommand(int taskNumber) {
         super();
+        assert taskNumber >= 0 : "taskNumber to mark should be >= 0";
         this.taskNumber = taskNumber;
     }
 

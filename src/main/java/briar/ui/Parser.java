@@ -31,6 +31,7 @@ public class Parser {
      * @throws BriarException If the command cannot be parsed properly.
      */
     public static Command parse(String command) throws BriarException {
+        assert command != null : "command should not be null";
         String[] splitCommand = command.split(" ");
         switch (splitCommand[0]) {
         case "bye":
