@@ -7,6 +7,7 @@ import briar.command.Command;
 import briar.command.DeleteCommand;
 import briar.command.ExitCommand;
 import briar.command.FindCommand;
+import briar.command.HelpCommand;
 import briar.command.ListCommand;
 import briar.command.MarkCommand;
 import briar.command.UnmarkCommand;
@@ -59,6 +60,8 @@ public class Parser {
             // No break as code either returns or throws exception
         case "find":
             return parseFindCommand(splitCommand);
+        case "help":
+            return new HelpCommand();
         default:
             throw new InvalidCommandException();
             // No break as code throws exception

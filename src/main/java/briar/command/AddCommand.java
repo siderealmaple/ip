@@ -39,6 +39,17 @@ public class AddCommand extends Command {
     }
 
     /**
+     * Returns a String containing the format of the command and what it does.
+     */
+    public static String getCommandInformation() {
+        return "todo <description> | Add a todo task to the list"
+                + System.lineSeparator()
+                + "deadline <description> /by <YYYY-MM-DD> | Add a deadline task to the list"
+                + System.lineSeparator()
+                + "event <description> /from <time> /to <time> | Add a event task to the list";
+    }
+
+    /**
      * Returns the string representation of the command.
      */
     @Override

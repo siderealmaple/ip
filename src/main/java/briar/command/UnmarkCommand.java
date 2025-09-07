@@ -38,6 +38,13 @@ public class UnmarkCommand extends Command {
     }
 
     /**
+     * Returns a String containing the format of the command and what it does.
+     */
+    public static String getCommandInformation() {
+        return "unmark <index> | Unmark the task at the specified index";
+    }
+
+    /**
      * Returns the string representation of the command.
      */
     @Override

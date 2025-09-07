@@ -23,6 +23,13 @@ public class ExitCommand extends Command {
     }
 
     /**
+     * Returns a String containing the format of the command and what it does.
+     */
+    public static String getCommandInformation() {
+        return "bye | Exit the program";
+    }
+
+    /**
      * Returns whether the command is an ExitCommand.
      */
     @Override

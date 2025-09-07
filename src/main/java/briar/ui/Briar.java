@@ -18,8 +18,8 @@ public class Briar {
      * Creates a Briar chatbot.
      * @param filePath File path for storage of tasks.
      */
-    public Briar(String filePath) {
-        this.storage = new Storage(filePath);
+    public Briar(String fileDirectory, String fileName) {
+        this.storage = new Storage(fileDirectory, fileName);
         ui = new Ui();
         try {
             String taskString = storage.load();
@@ -33,7 +33,7 @@ public class Briar {
      * Creates a Briar chatbot with default filePath.
      */
     public Briar() {
-        this("./data/Briar.txt");
+        this("./data", "Briar.txt");
     }
 
     /**

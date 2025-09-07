@@ -38,6 +38,13 @@ public class MarkCommand extends Command {
     }
 
     /**
+     * Returns a String containing the format of the command and what it does.
+     */
+    public static String getCommandInformation() {
+        return "mark <index> | Mark the task at the specified index";
+    }
+
+    /**
      * Returns the string representation of the command.
      */
     @Override

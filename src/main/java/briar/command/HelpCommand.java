@@ -6,11 +6,11 @@ import briar.ui.Storage;
 import briar.ui.Ui;
 
 /**
- * Represents a command that lists all Tasks from a TaskList.
+ * Represents a command that outputs a list of all the commands.
  */
-public class ListCommand extends Command {
+public class HelpCommand extends Command {
 
-    public ListCommand() {
+    public HelpCommand() {
         super();
     }
 
@@ -23,14 +23,14 @@ public class ListCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws BriarException {
-        return ui.showTaskList(tasks);
+        return ui.showHelp();
     }
 
     /**
      * Returns a String containing the format of the command and what it does.
      */
     public static String getCommandInformation() {
-        return "list | Displays a list of all tasks";
+        return "help | Displays a list of all commands";
     }
 
     /**
