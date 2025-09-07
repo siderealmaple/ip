@@ -27,6 +27,13 @@ public class FindCommand extends Command {
         return ui.showFoundTasks(taskListString);
     }
 
+    /**
+     * Returns a String containing the format of the command and what it does.
+     */
+    public static String getCommandInformation() {
+        return "find <keyword> | Find tasks that contain the specified keyword";
+    }
+
     @Override
     public String toString() {
         return "Find: " + keyword;

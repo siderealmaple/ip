@@ -2,6 +2,14 @@ package briar.ui;
 
 import java.util.Scanner;
 
+import briar.command.AddCommand;
+import briar.command.DeleteCommand;
+import briar.command.ExitCommand;
+import briar.command.FindCommand;
+import briar.command.HelpCommand;
+import briar.command.ListCommand;
+import briar.command.MarkCommand;
+import briar.command.UnmarkCommand;
 import briar.task.Task;
 import briar.task.TaskList;
 
@@ -111,6 +119,23 @@ public class Ui {
                     + System.lineSeparator()
                     + taskString;
         }
+        System.out.println(response);
+        return response;
+    }
+
+    /**
+     * Displays a list of all commands the user can use.
+     */
+    public String showHelp() {
+        String response = "Here's the list of all commands:" + System.lineSeparator()
+                + AddCommand.getCommandInformation() + System.lineSeparator()
+                + DeleteCommand.getCommandInformation() + System.lineSeparator()
+                + ExitCommand.getCommandInformation() + System.lineSeparator()
+                + FindCommand.getCommandInformation() + System.lineSeparator()
+                + HelpCommand.getCommandInformation() + System.lineSeparator()
+                + ListCommand.getCommandInformation() + System.lineSeparator()
+                + MarkCommand.getCommandInformation() + System.lineSeparator()
+                + UnmarkCommand.getCommandInformation() + System.lineSeparator();
         System.out.println(response);
         return response;
     }
