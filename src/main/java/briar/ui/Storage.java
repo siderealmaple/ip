@@ -12,20 +12,33 @@ import briar.exception.BriarException;
  * Represents the storage used to load and save to file.
  */
 public class Storage {
-    private final String filePath;
+    private static final String SAMPLE_DATA = "T|1|read book"
+            + System.lineSeparator() + "D|1|return book|2019-10-15"
+            + System.lineSeparator() + "E|0|project meeting|Aug 6th 2pm|4pm"
+            + System.lineSeparator() + "T|1|join sports club"
+            + System.lineSeparator() + "D|1|test|1999-10-11"
+            + System.lineSeparator() + "T|1|test"
+            + System.lineSeparator() + "D|0|test2|2002-01-02";
 
-    public Storage(String filePath) {
-        this.filePath = filePath;
+    private String fileDirectory;
+    private String fileName;
+
+
+    /**
+     * Creates a storage instance used to load and save to file.
+     */
+    public Storage(String fileDirectory, String fileName) {
+        this.fileDirectory = fileDirectory;
+        this.fileName = fileName;
     }
 
     /**
      * Loads all data from a file into a string.
      * @return String of all data in the file.
-     * @throws BriarException If file cannot be found.
      */
     public String load() throws BriarException {
         try {
-            File file = new File(filePath);
+            File file = new File(fileDirectory + "/" + fileName);
             Scanner scanner = new Scanner(file);
             String str = "";
             while (scanner.hasNext()) {
@@ -33,7 +46,12 @@ public class Storage {
             }
             return str;
         } catch (FileNotFoundException exception) {
-            throw new BriarException();
+            File directory = new File("./data");
+            if (!directory.exists()) {
+                directory.mkdir();
+            }
+            write(SAMPLE_DATA);
+            return load();
         }
     }
 
@@ -44,7 +62,7 @@ public class Storage {
      */
     public void write(String textToAdd) throws BriarException {
         try {
-            FileWriter fw = new FileWriter(filePath);
+            FileWriter fw = new FileWriter(fileDirectory + "/" + fileName);
             fw.write(textToAdd);
             fw.close();
         } catch (IOException exception) {
