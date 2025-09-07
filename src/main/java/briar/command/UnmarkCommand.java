@@ -17,6 +17,7 @@ public class UnmarkCommand extends Command {
      */
     public UnmarkCommand(int taskNumber) {
         super();
+        assert taskNumber >= 0 : "taskNumber to mark should be >= 0";
         this.taskNumber = taskNumber;
     }
 
