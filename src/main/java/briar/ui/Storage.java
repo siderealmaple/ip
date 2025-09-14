@@ -37,6 +37,8 @@ public class Storage {
      * @return String of all data in the file.
      */
     public String load() throws BriarException {
+        // ChatGPT was used to learn how to improve the code quality of this code.
+        // ChatGPT suggested closing the scanner after use and changing mkdir to mkdirs.
         try {
             File file = new File(fileDirectory + "/" + fileName);
             Scanner scanner = new Scanner(file);
@@ -44,11 +46,12 @@ public class Storage {
             while (scanner.hasNext()) {
                 str += scanner.nextLine() + "\n";
             }
+            scanner.close();
             return str;
         } catch (FileNotFoundException exception) {
-            File directory = new File("./data");
+            File directory = new File(fileDirectory);
             if (!directory.exists()) {
-                directory.mkdir();
+                directory.mkdirs();
             }
             write(SAMPLE_DATA);
             return load();
