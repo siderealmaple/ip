@@ -47,7 +47,7 @@ public class Parser {
             return parseUnmarkCommand(splitCommand);
             // No break as code either returns or throws exception
         case "todo":
-            return parseTodoCommand(splitCommand);
+            return parseTodoCommand(splitCommand, command);
             // No break as code either returns or throws exception
         case "deadline":
             return parseDeadlineCommand(splitCommand, command);
@@ -94,12 +94,13 @@ public class Parser {
         }
     }
 
-    private static AddCommand parseTodoCommand(String[] splitCommand)
+    private static AddCommand parseTodoCommand(String[] splitCommand, String command)
             throws EmptyCommandException, WrongFormatException {
         if (splitCommand.length <= 1) {
             throw new EmptyCommandException(splitCommand[0]);
         }
-        return new AddCommand(Task.createTask(Task.TaskType.TODO, splitCommand[1]));
+        String subCommand = command.substring(splitCommand[0].length() + 1);
+        return new AddCommand(Task.createTask(Task.TaskType.TODO, subCommand));
     }
 
     private static AddCommand parseDeadlineCommand(String[] splitCommand, String command)
