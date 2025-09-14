@@ -15,10 +15,7 @@ public class Storage {
     private static final String SAMPLE_DATA = "T|1|read book"
             + System.lineSeparator() + "D|1|return book|2019-10-15"
             + System.lineSeparator() + "E|0|project meeting|Aug 6th 2pm|4pm"
-            + System.lineSeparator() + "T|1|join sports club"
-            + System.lineSeparator() + "D|1|test|1999-10-11"
-            + System.lineSeparator() + "T|1|test"
-            + System.lineSeparator() + "D|0|test2|2002-01-02";
+            + System.lineSeparator() + "T|1|join sports club";
 
     private String fileDirectory;
     private String fileName;
