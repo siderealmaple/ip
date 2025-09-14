@@ -16,7 +16,8 @@ public class Briar {
 
     /**
      * Creates a Briar chatbot.
-     * @param filePath File path for storage of tasks.
+     * @param fileDirectory File path for file containing the tasks to be placed.
+     * @param fileName File name for the tasks to be stored in.
      */
     public Briar(String fileDirectory, String fileName) {
         this.storage = new Storage(fileDirectory, fileName);
@@ -44,11 +45,6 @@ public class Briar {
         listen();
         ui.showExit();
     }
-
-    //    public static void main(String[] args) {
-    //        Briar briar = new Briar("./data/Briar.txt");
-    //        briar.run();
-    //    }
 
     private void listen() {
         boolean isExit = false;

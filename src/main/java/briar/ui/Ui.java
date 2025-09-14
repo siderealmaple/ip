@@ -127,17 +127,22 @@ public class Ui {
      * Displays a list of all commands the user can use.
      */
     public String showHelp() {
-        String response = "Here's the list of all commands:" + System.lineSeparator()
-                + AddCommand.getCommandInformation() + System.lineSeparator()
-                + DeleteCommand.getCommandInformation() + System.lineSeparator()
-                + ExitCommand.getCommandInformation() + System.lineSeparator()
-                + FindCommand.getCommandInformation() + System.lineSeparator()
-                + HelpCommand.getCommandInformation() + System.lineSeparator()
-                + ListCommand.getCommandInformation() + System.lineSeparator()
-                + MarkCommand.getCommandInformation() + System.lineSeparator()
-                + UnmarkCommand.getCommandInformation() + System.lineSeparator();
+        // ChatGPT was used to learn how to improve the code quality of this code.
+        // ChatGPT said to use StringBuilder instead which would be more efficient.
+        StringBuilder response = new StringBuilder();
+
+        response.append("Here's the list of all commands:").append(System.lineSeparator());
+        response.append(AddCommand.getCommandInformation()).append(System.lineSeparator());
+        response.append(DeleteCommand.getCommandInformation()).append(System.lineSeparator());
+        response.append(ExitCommand.getCommandInformation()).append(System.lineSeparator());
+        response.append(FindCommand.getCommandInformation()).append(System.lineSeparator());
+        response.append(HelpCommand.getCommandInformation()).append(System.lineSeparator());
+        response.append(ListCommand.getCommandInformation()).append(System.lineSeparator());
+        response.append(MarkCommand.getCommandInformation()).append(System.lineSeparator());
+        response.append(UnmarkCommand.getCommandInformation()).append(System.lineSeparator());
+
         System.out.println(response);
-        return response;
+        return response.toString();
     }
 
     /**
